@@ -1,5 +1,6 @@
 # DeviceInfoCollector
-DeviceInfoCollector is a Python program that is designed to connect to a list of networking devices of various vendors over their managment interface, run information regarding their hardware configuration, and publish the information to a Confluence Page. The output includes:
+DeviceInfoCollector is a Python program that is designed to connect to a list of networking devices of various vendors over their managment interface, get information regarding their hardware configuration, and publish the information to a Confluence Page. 
+The output includes:
 - Device hostname name
 - Management IP address
 - Firmware version
@@ -10,7 +11,8 @@ This was developed with Python 3.12.2 and the follow additional libraries are ne
 
 ## Usage  
 `python DeviceInfoCollector.py`
-The script has no required parameters. The script required the user to update the information for how to connect to the networking devices in the devices.json file. It will currently connect to Cisco IOS-based systems and will output the information to the screen. Adding the publishing of the information to a Confluence page will be coming soon.
+
+The script has no required parameters. The script requires the user to update the information necessary to connect to the networking devices in the `devices.json` file. It will currently connect to Cisco IOS-based systems and will output the information to the screen. Adding the publishing of the information to a Confluence page will be coming soon.
 
 ## Structure of Classes
 ### Necessary Classes/Files
@@ -20,12 +22,12 @@ The script has no required parameters. The script required the user to update th
 - `TelnetConnection.py` is a child class of DeviceConnection for telnet connections to send commands to the cli of networking devices. For received data, it will use the array of callback functions to enable processing the data appropriately.
 - `BaseDevice.py` is the base class associated with networking devices that the child classes will implement the OS-specific functionality. The attributes of this class include the basic information that will be gathered from each device.
 - `CiscoIOSDevice.py ` is the child class of BaseDevice associated with Cisco IOS networking devices that will implement the OS-specific functionality. The attributes of this class include the basic information that will be gathered from each Cisco IOS device. 
--`GetDevices.py` includes classes that read in the group of networking devices along with their basic connection information to be iterated against to connect to the devices.
+- `GetDevices.py` includes classes that read in the group of networking devices along with their basic connection information to be iterated against to connect to the devices.
 
 ### Testing Classes and Files
--`Testing/TelnetTestServer.py` - script that will serve as a telnet server to test out the telnet connection when a test device is not available.
--`Testing/showVersionOutput.txt` - text file with sample Cisco IOS output for the cli command `show version`
--`Testing/showDiagOutput.txt` - text file with sample Cisco IOS output for the cli command `show diag`
+- `Testing/TelnetTestServer.py` - script that will serve as a telnet server to test out the telnet connection when a test device is not available.
+- `Testing/showVersionOutput.txt` - text file with sample Cisco IOS output for the cli command `show version`
+- `Testing/showDiagOutput.txt` - text file with sample Cisco IOS output for the cli command `show diag`
 
 ## Future Directions
 * Add in the creation of a Confluence page and saving the output in a table onto a confluence page
