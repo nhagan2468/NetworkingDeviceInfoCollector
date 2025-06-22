@@ -1,0 +1,36 @@
+{
+  "devices": [
+    {
+      "OS": "Cisco ISR",
+      "name": "Alpha",
+      "managementIp": "127.0.0.1",
+      "username": "user1",
+      "password": "Password1",
+      "connectMethod": "telnet"
+    },
+    {
+      "OS": "Cisco ISR",
+      "name": "Bravo",
+      "managementIp": "127.0.0.1",
+      "username": "user2",
+      "password": "Password2",
+      "connectMethod": "telnet"
+    },
+    {
+      "OS": "Cisco ISR",
+      "name": "Charlie",
+      "managementIp": "127.0.0.1",
+      "username": "user3",
+      "password": "Password3",
+      "connectMethod": "telnet"
+    },
+    {
+      "OS": "Cisco ISR",
+      "name": "Delta",
+      "managementIp": "192.168.13.100",
+      "username": "user4",
+      "password": "Password4",
+      "connectMethod": "telnet"
+    }
+  ]
+}
