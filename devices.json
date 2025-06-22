@@ -1,7 +1,7 @@
 {
   "devices": [
     {
-      "OS": "Cisco ISR",
+      "OS": "Cisco IOS",
       "name": "Alpha",
       "managementIp": "127.0.0.1",
       "username": "user1",
@@ -9,7 +9,7 @@
       "connectMethod": "telnet"
     },
     {
-      "OS": "Cisco ISR",
+      "OS": "Cisco IOS",
       "name": "Bravo",
       "managementIp": "127.0.0.1",
       "username": "user2",
@@ -17,7 +17,7 @@
       "connectMethod": "telnet"
     },
     {
-      "OS": "Cisco ISR",
+      "OS": "Cisco IOS",
       "name": "Charlie",
       "managementIp": "127.0.0.1",
       "username": "user3",
@@ -25,7 +25,7 @@
       "connectMethod": "telnet"
     },
     {
-      "OS": "Cisco ISR",
+      "OS": "Cisco IOS",
       "name": "Delta",
       "managementIp": "192.168.13.100",
       "username": "user4",

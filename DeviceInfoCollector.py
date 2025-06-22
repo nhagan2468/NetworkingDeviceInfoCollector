@@ -38,7 +38,7 @@ for i in testlist.devList:
     match i.devOS:
         case OSType.JUNOS:
             devType = BaseDevice(i.devname, i.managementIp)	# To be implemented
-        case OSType.C_ISR:
+        case OSType.C_IOS:
             devType = CiscoIOSDevice(i.devname, i.managementIp)
         case OSType.C_XR:
             devType = BaseDevice(i.devname, i.managementIp)	# To be implemented

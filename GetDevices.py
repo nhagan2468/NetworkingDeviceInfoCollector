@@ -23,7 +23,7 @@ from enum import StrEnum
 # Enumeration class for the different Operating Systems Supported
 class OSType(StrEnum):
     JUNOS = "JunOS"
-    C_ISR = "Cisco ISR"
+    C_IOS = "Cisco IOS"
     C_XR = "Cisco XR"
     NDEF = "Not Defined"
 
