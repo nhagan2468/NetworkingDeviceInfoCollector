@@ -13,20 +13,20 @@ This was developed with Python 3.12.2 and the follow additional libraries are ne
 ## Usage  
 `python DeviceInfoCollector.py`
 
-The script has no required parameters. The script requires the user to update the information necessary to connect to the networking devices in the `devices.json` file. It will currently connect to Cisco IOS-based systems and Juniper Junos-based systems. The script will output the information about the devices to the screenand add the publishing of the information to a Confluence page.
+The script has no required parameters. The script requires the user to update the information necessary to connect to the networking devices in the `devices.json` file. It will currently connects to Cisco IOS-based systems and Juniper Junos-based systems. The script will output the information about the devices to the screen and publish the information to a Confluence page.
 
 ## Structure of Classes
 ### Necessary Classes/Files
-- `device.json` is a JSON file that contains the information about each networking device including the hostname, console ip address, signin information, and connection method.
-- `DeviceInfoCollector.py` is the primary file of the project that will use the associated classed to load the information about all of the devices, connect to the devices individually, collect the desired information on the hardware, and write the output to the screen.
+- `device.json` is a JSON file that contains the information about each networking device including the hostname, console ip address, sign-in information, and connection method.
+- `DeviceInfoCollector.py` is the primary file of the project that will use the associated classed to load the information about all of the devices, connect to the devices individually, collect the desired information on the hardware, write the output to the screen, and call the confluence writer.
 - `DeviceConnection.py` is a base class for connections to send commands to the cli of networking devices and have a list of callback functions to process the returned data.
 - `TelnetConnection.py` is a child class of DeviceConnection for telnet connections to send commands to the cli of networking devices. For received data, it will use the array of callback functions to enable processing the data appropriately.
 - `BaseDevice.py` is the base class associated with networking devices that the child classes will implement the OS-specific functionality. The attributes of this class include the basic information that will be gathered from each device.
 - `CiscoIOSDevice.py ` is the child class of BaseDevice associated with Cisco IOS networking devices that will implement the OS-specific functionality. The attributes of this class include the basic information that will be gathered from each Cisco IOS device. 
-- `JuniperJunOSDevice.py ` is the child class of BaseDevice associated with Juniper Junos networking devices that will implement the OS-specific functionality. The attributes of this class include the basic information that will be gathered from each Cisco IOS device. 
+- `JuniperJunOSDevice.py ` is the child class of BaseDevice associated with Juniper Junos networking devices that will implement the OS-specific functionality. The attributes of this class include the basic information that will be gathered from each Juniper device. 
 - `GetDevices.py` includes classes that read in the group of networking devices along with their basic connection information to be iterated against to connect to the devices.
-- `ConfluenceWriter.py` is the class that is using the atlassian Confluence interface to read in apassword from a file, log into Confluence, and create or update a defined page with the information obtained from the rest of the program. 
-- `ConfluenceWriter_neutered.py` is the class that if testing on a network without access to the atlassian Confluence server, it will just print to the screen the new body that will be sent to confluence if it was available.
+- `ConfluenceWriter.py` is the class that is using the Atlassian Confluence interface to read in a password from a file, log into Confluence, and create or update a defined page with the information obtained from the rest of the program. 
+- `ConfluenceWriter_neutered.py` is the class that if testing on a network without access to the Atlassian Confluence server, it will just print to the screen the new body that will be sent to confluence if it was available.
 
 ### Testing Classes and Files
 - `Testing/TelnetTestServer.py` - script that will serve as a telnet server to test out the telnet connection when a test device is not available.
