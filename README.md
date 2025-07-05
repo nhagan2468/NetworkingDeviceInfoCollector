@@ -8,9 +8,7 @@ The output includes:
 - Location of the equipment by rack and row
 
 ## Overview/Requirements
-This was developed with Python 3.12.2 and the follow additional libraries are needed: telnetlib3. Your mileage may vary if you are using other versions of Python.
-
-atlassian-python-api
+This was developed with Python 3.12.2 and the follow additional libraries are needed: telnetlib3, atlassian-python-api. Your mileage may vary if you are using other versions of Python.
 
 ## Usage  
 `python DeviceInfoCollector.py`
