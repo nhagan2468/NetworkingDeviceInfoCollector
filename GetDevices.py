@@ -30,14 +30,20 @@ class OSType(StrEnum):
 # Device class holding the connection information for that device
 class NetDevice:
     devname = ""
-    managementIp = ""
+    consoleIp = ""
+    interfaceIp = ""
+    devfamily = ""
+    location = ""
     username = ""
     password = ""
     connectMethod = ""
     
-    def __init__(self, OSName, name, managementIp, uname, password, connection):
+    def __init__(self, OSName, name, consoleIp, interfaceIp, family, location, uname, password, connection):
         self.devname = name
-        self.managementIp = managementIp
+        self.consoleIp = consoleIp
+        self.interfaceIp = interfaceIp
+        self.devfamily = family
+        self.location = location
         self.username = uname
         self.password = password
         self.connectMethod = connection
@@ -56,9 +62,9 @@ class NetDeviceList:
             with open(fname) as fin:
                 data = json.load(fin)
                 for dev in data['devices']:
-                    print(dev['OS'])
-                    devObj = NetDevice(dev['OS'], dev['name'], dev['managementIp'], 
-                                       dev['username'], dev['password'], dev['connectMethod'])
+                    #print(dev['OS'])
+                    devObj = NetDevice(dev['OS'], dev['name'], dev['ConsoleIp'], dev['InterfaceIp'], dev['family'], 
+                                       dev['Location'], dev['username'], dev['password'], dev['connectMethod'])
                     self.devList.append(devObj)
             
         except FileNotFoundError as ferr:

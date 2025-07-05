@@ -18,6 +18,7 @@
 
 import socket
 import sys
+import os
 import threading
 
 # read the file whose name is passed in and return the contents of the file
@@ -27,24 +28,68 @@ def readFile(fname):
             data = fin.read()
             return data
     except FileNotFoundError as ferr:
-        print(f"Configuration file {fname} doesn't exist")
-
-# function to handle an incoming network socket connection from a client
-# and will automatically send the appropriate data.
-# TODO: This currently is hardcoded for Cisco IOS, but should be updated
-# to be different OS versions based on the JSON file being used
-def handleIncoming(insock):
+        print(f"file {fname} doesn't exist")
     
+
+def iosCommands(indata, send_resp_line):
     send_resp = ['Username: ',
                  'Password: ',
                  'Cisco-RTR# '
                 ]
+        
+    if indata == 'show version'.encode('utf-8'):
+        datToSend = readFile('ios_showVersionOutput.txt')
+        datToSend = datToSend + send_resp[send_resp_line]
+        print("sending show version file")
+    elif indata == 'show diag'.encode('utf-8'):
+        datToSend = readFile('ios_showDiagOutput.txt')
+        datToSend = datToSend + send_resp[send_resp_line]
+        print("sending show diag file")
+    else:
+        datToSend = send_resp[send_resp_line]
+        print(f"Sending: {send_resp[send_resp_line]}")
+    
+    return datToSend
+
+
+def junosCommands(indata, send_resp_line, uname, devname):
+    send_resp = ['Username: ',
+                 'Password: ',
+                 uname + '@' + devname + '% ',
+                 uname + '@' + devname + '> '
+                ]
+    
+    if indata == 'cli'.encode('utf-8'):
+        datToSend = send_resp[3]
+        print("entering cli")
+    elif indata == 'show version brief'.encode('utf-8'):
+        datToSend = readFile('junos_showVersionOutput.txt')
+        datToSend = datToSend + send_resp[3]
+        print("sending show version file")
+    elif indata == 'show chassis hardware'.encode('utf-8'):
+        datToSend = readFile('junos_showChassisHwOutput.txt')
+        datToSend = datToSend + send_resp[3]
+        print("sending show chassis hardware file")
+    elif indata == 'exit'.encode('utf-8'):
+        datToSend = send_resp[2]
+        print("exiting cli")
+    else:
+        datToSend = send_resp[send_resp_line]
+        print(f"Sending: {send_resp[send_resp_line]}")
+    
+    return datToSend
+
+# function to handle an incoming network socket connection from a client
+# and will automatically send the appropriate data.
+def handleIncoming(insock, deviceIdx, deviceList):
     
     send_resp_line = 0
     
+    print(f"device number {deviceIdx} being handled")
+    
     # First ask for the Username before the client sends anything
-    insock.send(send_resp[send_resp_line].encode('utf-8'))
-    print(f"Sending: {send_resp[send_resp_line]}")
+    insock.send('Username: '.encode('utf-8'))
+    print("Sending: Username: ")
     send_resp_line += 1
 
     # loop through sending all responses until receive a quit
@@ -54,22 +99,20 @@ def handleIncoming(insock):
 
         if not indata:
             break
-        elif indata == 'show version'.encode('utf-8'):
-            datToSend = readFile('showVersionOutput.txt')
-            datToSend = datToSend + send_resp[send_resp_line]
-            print("sending show version file")
-        elif indata == 'show diag'.encode('utf-8'):
-            datToSend = readFile('showDiagOutput.txt')
-            datToSend = datToSend + send_resp[send_resp_line]
-            print("sending show diag file")
         elif indata == 'quit'.encode('utf-8'):
             # TODO: Update this to be the standard CTRL + ] to exit Telnet 
             print("device quit connection")
             insock.close()
             break
+        elif deviceList[deviceIdx].devOS == OSType.C_IOS:
+            datToSend = iosCommands(indata, send_resp_line)
+        elif deviceList[deviceIdx].devOS == OSType.JUNOS:
+            datToSend = junosCommands(indata,
+                                      send_resp_line,
+                                      deviceList[deviceIdx].username,
+                                      deviceList[deviceIdx].devname)
         else:
-            datToSend = send_resp[send_resp_line]
-            print(f"Sending: {send_resp[send_resp_line]}")
+            print(f"Invalid Device type: {deviceList[deviceIdx].devOS}")
         
         insock.send(datToSend.encode('utf-8'))
         
@@ -79,6 +122,25 @@ def handleIncoming(insock):
     
     insock.close()
         
+
+# Read the devices.json file to see what devices the software is going to
+# try to connect to and select the appropriate files to read for them.
+
+# devices.json is one directory higher than this testing directory
+sys.path.append(r"..")
+
+# now can import the method to parse the json
+from GetDevices import OSType, NetDevice, NetDeviceList
+
+DEVICE_INFO_FILE = "devices.json"
+currDir = os.path.dirname(__file__)
+devfilepath = os.path.abspath(os.path.join(currDir, "..", DEVICE_INFO_FILE))
+
+# Create a list of devices to connect from the json file with the connection info
+testlist = NetDeviceList()
+testlist.loadDevicesFromJSON(devfilepath)
+
+devicesHandled = 0
 
 # Set up the actual socket connection using threading to
 # allow the KeyboardInterrupt to not be blocked by the recv
@@ -103,9 +165,10 @@ try:
     while True:
         try:
             insock, addr = mysock.accept()
-            threadhandle = threading.Thread(target=handleIncoming, args=(insock,))
+            threadhandle = threading.Thread(target=handleIncoming, args=(insock, devicesHandled, testlist.devList,))
             threadhandle.start()
             inhandlers.append(threadhandle)
+            devicesHandled += 1
         except socket.timeout:
             pass
         except KeyboardInterrupt:

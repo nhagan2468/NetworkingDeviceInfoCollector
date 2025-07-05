@@ -1,0 +1,12 @@
+Hostname: mxHost
+Model: mx480
+Junos: 15.1I20160816_2117_yyin
+JUNOS OS Kernel 64-bit (WITNESS) [20160723.102341_fbsd-builder_stable_10]
+JUNOS OS libs [20160723.102341_fbsd-builder_stable_10]
+JUNOS OS runtime [20160723.102341_fbsd-builder_stable_10]
+JUNOS OS time zone information [20160723.102341_fbsd-builder_stable_10]
+...
+JUNOS jfirmware [20160628.005233_builder_release_151_f_throttle]
+JUNOS Online Documentation [20160812.205759_yyin_release_151_f_throttle]
+JUNOS FIPS mode utilities [20160816.211724_yyin_release_151_f_throttle]
+...

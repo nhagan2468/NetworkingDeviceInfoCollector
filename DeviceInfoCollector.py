@@ -22,6 +22,9 @@ from GetDevices import OSType, NetDevice, NetDeviceList
 from TelnetConnection import TelnetConnection
 from BaseDevice import BaseDevice
 from CiscoIOSDevice import CiscoIOSDevice
+from JuniperJunOSDevice import JuniperJunosDevice
+#from ConfluenceWriter import ConfluenceWriter
+from ConfluenceWriter_neutered import ConfluenceWriter
 
 DEVICE_INFO_FILE = "devices.json"
 
@@ -29,28 +32,41 @@ DEVICE_INFO_FILE = "devices.json"
 testlist = NetDeviceList()
 testlist.loadDevicesFromJSON(DEVICE_INFO_FILE)
 
+devInfoList = []
+
 # Loop through the devices and process them according to the Operating System
 for i in testlist.devList:
     print(i.devname)
-    devType = BaseDevice(i.devname, i.managementIp)
+    print(i.devfamily)
     
     # Pick the appropriate BaseDevice child class based on the OS
     match i.devOS:
         case OSType.JUNOS:
-            devType = BaseDevice(i.devname, i.managementIp)	# To be implemented
+            devType = JuniperJunosDevice(i)
         case OSType.C_IOS:
-            devType = CiscoIOSDevice(i.devname, i.managementIp)
+            devType = CiscoIOSDevice(i)
         case OSType.C_XR:
-            devType = BaseDevice(i.devname, i.managementIp)	# To be implemented
+            devType = BaseDevice(i.devname, i.consoleIp)	# To be implemented
         case OSType.NDEF:
-            devType = BaseDevice(i.devname, i.managementIp)	# To deal with this error case somehow in the future
+            devType = BaseDevice(i.devname, i.consoleIp)	# To deal with this error case somehow in the future
+            print("Not a defined OS Type!!!")
+            break
+        case _:
+            print("Not a defined OS Type!!!")
+            break
     
     # Get the list of callback functions and then connect to grab the data
     # TODO: use the JSON file to identify the connection type instead of just hardcoding Telnet
     commands = devType.getCommandList()
     tc = TelnetConnection(i.username, i.password, commands, devType.commandPrompt)
-    tc.send(i.managementIp, devType.functCalls)
+    tc.send(i.consoleIp, devType.functCalls)
     
     # Printout the device information to the screen
     # TODO: Make this update the confluence page instead
     devType.printDevInfo()
+    
+    devInfoList.append(devType)
+    
+# Create/Update the confluence page with the new information
+cwriter = ConfluenceWriter()
+cwriter.createOrUpdatePage("page_title", devInfoList)

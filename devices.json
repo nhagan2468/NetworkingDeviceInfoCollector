@@ -3,15 +3,21 @@
     {
       "OS": "Cisco IOS",
       "name": "Alpha",
-      "managementIp": "127.0.0.1",
+      "family": "8000 Series Router",
+      "ConsoleIp": "127.0.0.1",
+      "InterfaceIp": "127.0.0.2",
+      "Location": "rr01-03",
       "username": "user1",
       "password": "Password1",
       "connectMethod": "telnet"
     },
     {
-      "OS": "Cisco IOS",
+      "OS": "JunOS",
       "name": "Bravo",
-      "managementIp": "127.0.0.1",
+      "family": "MX480 Router",
+      "ConsoleIp": "127.0.0.1",
+      "InterfaceIp": "127.0.0.2",
+      "Location": "rr02-02",
       "username": "user2",
       "password": "Password2",
       "connectMethod": "telnet"
@@ -19,17 +25,45 @@
     {
       "OS": "Cisco IOS",
       "name": "Charlie",
-      "managementIp": "127.0.0.1",
+      "family": "Catalyst 9400 Series Switch",
+      "ConsoleIp": "127.0.0.1",
+      "InterfaceIp": "127.0.0.2",
+      "Location": "rr01-07",
       "username": "user3",
       "password": "Password3",
       "connectMethod": "telnet"
     },
     {
-      "OS": "Cisco IOS",
+      "OS": "JunOS",
       "name": "Delta",
-      "managementIp": "192.168.13.100",
+      "family": "MX80 Router",
+      "ConsoleIp": "127.0.0.1",
+      "InterfaceIp": "127.0.0.2",
+      "Location": "rr02-06",
       "username": "user4",
       "password": "Password4",
+      "connectMethod": "telnet"
+    },
+    {
+      "OS": "JunOS",
+      "name": "Echo",
+      "family": "MX480 Router",
+      "ConsoleIp": "127.0.0.1",
+      "InterfaceIp": "127.0.0.4",
+      "Location": "rr02-08",
+      "username": "user5",
+      "password": "Password5",
+      "connectMethod": "telnet"
+    },
+    {
+      "OS": "Cisco IOS",
+      "name": "Foxtrot",
+      "family": "Catalyst 9400 Series Switch",
+      "ConsoleIp": "127.0.0.1",
+      "InterfaceIp": "127.0.0.2",
+      "Location": "rr01-09",
+      "username": "user6",
+      "password": "Password6",
       "connectMethod": "telnet"
     }
   ]

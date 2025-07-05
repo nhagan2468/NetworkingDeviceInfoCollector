@@ -1,0 +1,44 @@
+Slot 0:
+C2610 1E Mainboard Port adapter, 5 ports
+Port adapter is analyzed
+Port adapter insertion time unknown
+EEPROM contents at hardware discovery:
+Hardware Revision : 2.3
+PCB Serial Number : JAD03428879 (3059475211)
+Part Number : 73-2839-13
+RMA History : 00
+RMA Number : 0-0-0-0
+Board Revision : A0
+Deviation Number : 0-16418
+EEPROM format version 4
+EEPROM contents (hex):
+0x00: 04 FF 40 00 91 41 02 03 C1 18 4A 41 44 30 33 34
+0x10: 32 38 38 37 39 20 28 33 30 35 39 34 37 35 32 31
+0x20: 31 29 82 49 0B 17 0D 04 00 81 00 00 00 00 42 41
+0x30: 30 80 00 00 40 22 FF FF FF FF FF FF FF FF FF FF
+0x40: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+0x50: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+0x60: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+0x70: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+
+WIC Slot 0:
+Serial 2T (12in1)
+Hardware revision 1.0 Board revision D0
+Serial number 23855958 Part number 800-03181-01
+Test history 0x0 RMA number 00-00-00
+Connector type PCI
+EEPROM format version 1
+EEPROM contents (hex):
+0x20: 01 12 01 00 01 6C 03 56 50 0C 6D 01 00 00 00 00
+0x30: 68 00 00 00 00 11 10 00 FF FF FF FF FF FF FF FF
+
+WIC Slot 1:
+Serial 2T (12in1)
+Hardware revision 1.0 Board revision D0
+Serial number 22420112 Part number 800-03181-01
+Test history 0x0 RMA number 00-00-00
+Connector type PCI
+EEPROM format version 1
+EEPROM contents (hex):
+0x20: 01 12 01 00 01 56 1A 90 50 0C 6D 01 00 00 00 00
+0x30: 68 00 00 00 00 09 11 00 FF FF FF FF FF FF FF FF

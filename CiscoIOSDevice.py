@@ -19,14 +19,19 @@
 # Author: @nhagan2468
 
 import re
-from BaseDevice import BaseDevice 
+from BaseDevice import BaseDevice
+from GetDevices import OSType, NetDevice, NetDeviceList
 
 class CiscoIOSDevice(BaseDevice):
-    commandPrompt = 'Cisco-RTR#'
     
-    def __init__(self, name, IpAddr):
-        self.devName = name
-        self.manIpAddr = IpAddr
+    def __init__(self, netDev:NetDevice):
+        self.devName = netDev.devname
+        self.conIPAddr = netDev.consoleIp
+        self.intIPAddr = netDev.interfaceIp
+        self.location = netDev.location
+        self.devFamily = netDev.devfamily
+        self.OSVersion = netDev.devOS
+        self.commandPrompt = 'Cisco-RTR#'
         self.commandList = [
                             (self.commandPrompt, 'show version'),
                             (self.commandPrompt, 'show diag')

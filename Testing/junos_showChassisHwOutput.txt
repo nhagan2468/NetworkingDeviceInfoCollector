@@ -1,0 +1,32 @@
+
+Hardware inventory:
+Item             Version  Part number  Serial number     Description
+Chassis                                JN1203BEAAFB      MX480
+Midplane         REV 05   710-017414   ACAB6444          MX480 Midplane
+FPM Board        REV 02   710-017254   CACG2646          Front Panel Display
+PEM 0            Rev 02   740-063046   QCS2207U0AJ       PS 1.4-2.52kW; 90-264V AC in
+PEM 1            Rev 02   740-063046   QCS2207U075       PS 1.4-2.52kW; 90-264V AC in
+Routing Engine 0 REV 06   750-072925   EAAG9532          RE-S-2X00x6
+Routing Engine 1 REV 06   750-072925   EAAD4894          RE-S-2X00x6
+CB 0             REV 40   750-070866   EAAV1128          Enhanced MX SCB 3
+CB 1             REV 40   750-070866   EAAT2273          Enhanced MX SCB 3
+FPC 0            REV 60   750-070395   EAAT9462          MPC10E 3D MRATE-15xQSFPP
+  CPU            REV 21   750-072571   EAAL4646          FMPC PMB
+  PIC 0                   BUILTIN      BUILTIN           MRATE-5xQSFPP
+  PIC 1                   BUILTIN      BUILTIN           MRATE-5xQSFPP
+    Xcvr 4       REV 01   740-157132   2E1CZFA728016     QSFP56-DD-400G-ZR
+  PIC 2                   BUILTIN      BUILTIN           MRATE-5xQSFPP
+FPC 1            REV 51   750-078633   EAAY6176          MPC10E 3D MRATE-10xQSFPP
+  CPU            REV 21   750-072571   EAAY5228          FMPC PMB
+  PIC 0                   BUILTIN      BUILTIN           MRATE-5xQSFPP
+Xcvr 4       REV 01   740-114884   1T1TZFA740012     QSFP56-DD-400G-ZR
+  PIC 1                   BUILTIN      BUILTIN           MRATE-5xQSFPP
+    Xcvr 4       REV 01   740-157132   2E1CZFA728022     QSFP56-DD-400G-ZR
+FPC 2            REV 60   750-070395   EAAY6079          MPC10E 3D MRATE-15xQSFPP
+  CPU            REV 21   750-072571   EAAB6925          FMPC PMB
+  PIC 0                   BUILTIN      BUILTIN           MRATE-5xQSFPP
+    Xcvr 4       REV 01   740-114884   1T1TZFA740010     QSFP56-DD-400G-ZR
+  PIC 1                   BUILTIN      BUILTIN           MRATE-5xQSFPP
+    Xcvr 4       REV 01   740-114884   1T1TZFA740005     QSFP56-DD-400G-ZR
+  PIC 2                   BUILTIN      BUILTIN           MRATE-5xQSFPP
+    Xcvr 4       REV 01   740-114884   1T1TZFA74000Z     QSFP56-DD-400G-ZR

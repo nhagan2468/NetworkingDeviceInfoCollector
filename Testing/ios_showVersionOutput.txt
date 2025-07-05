@@ -1,0 +1,46 @@
+Cisco Internetwork Operating System Software
+IOS (tm) GS Software (RSP-JV-M), Experimental Version 11.1(12816)
+[getchell 108]
+Copyright (c) 1986-1996 by cisco Systems, Inc.
+Compiled Mon 03-Jun-96 11:39 by getchell
+Image text-base: 0x600108A0, data-base: 0x60910000
+ROM: System Bootstrap, Version 5.3(16645) [szhang 571], INTERIM SOFTWARE
+Router uptime is 4 minutes
+System restarted by reload
+System image file is "slot0:dirt/vip2/master/rsp-jv-mz.960603", booted via tftp from 172.18.2.3
+cisco RSP2 (R4600) processor with 24576K bytes of memory.
+R4600 processor, Implementation 32, Revision 2.0
+Last reset from power-on
+G.703/E1 software, Version 1.0.
+SuperLAT software copyright 1990 by Meridian Technology Corp).
+Bridging software.
+X.25 software, Version 2.0, NET2, BFE and GOSIP compliant.
+TN3270 Emulation software (copyright 1994 by TGV Inc).
+Primary Rate ISDN software, Version 1.0.
+Chassis Interface.
+1 CIP controller (3 IBM Channels).
+1 CIP2 controller (3 IBM Channels).
+1 EIP controller (6 Ethernet).
+1 HIP controller (1 HSSI).
+1 FSIP controller (8 Serial).
+1 AIP controller (1 ATM).
+1 TRIP controller (4 Token Ring).
+1 FIP controller (1 FDDI).
+1 MIP controller (2 T1).
+3 VIP2 controllers (1 FastEthernet)(13 Ethernet)(4 Serial)(4 Token Ring)(1
+Fddi).
+1 FEIP controller (1 FastEthernet).
+19 Ethernet/IEEE 802.3 interfaces.
+2 FastEthernet/IEEE 802.3 interfaces.
+8 Token Ring/IEEE 802.5 interfaces.
+12 Serial network interfaces.
+1 HSSI network interface.
+2 FDDI network interfaces.
+1 ATM network interface.
+2 Channelized T1/PRI ports.
+125K bytes of non-volatile configuration memory.
+8192K bytes of Flash PCMCIA card at slot 0 (Sector size 128K).
+8192K bytes of Flash PCMCIA card at slot 1 (Sector size 128K).
+8192K bytes of Flash internal SIMM (Sector size 256K).
+No slave installed in slot 7.
+Configuration register is 0x0

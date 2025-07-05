@@ -20,16 +20,20 @@
 
 class BaseDevice:
     devName = ""			# Name of the device
-    manIPAddr = ""			# Ip Address of the Management Interface
+    devFamily = ""			# Family of devices
+    conIPAddr = ""			# Ip Address of the Console Interface
+    intIPAddr = ""			# Other interfaces IP addresses
+    location = ""			# row and rack location of device 
     OSVersion = "None"		# OS Version
     cardInfoBySlot = {}		# Dictionary of card names per slot
     commandList = []		# List of commands to send to the device 
     functCalls = []			# List of function callbacks to parse the output
     commandPrompt = ""		# The standard CLI prompt expected on new lines
     
-    def __init__(self, name, IpAddr):
+    def __init__(self, name, IpAddr, family):
         self.devName = name
-        self.manIpAddr = IpAddr
+        self.conIPAddr = IpAddr
+        self.devFamily = family
         self.cardInfoBySlot = {}
         self.commandList = []
         self.functCalls = []
@@ -47,7 +51,7 @@ class BaseDevice:
     def printDevInfo(self):
         # to be fixed to work for the Confluence page output. For now
         # will just write a csv string.
-        outstr = self.devName + ',' + self.manIpAddr + ',' + self.OSVersion + ','
+        outstr = self.devName + ',' + self.devFamily + ',' + self.conIPAddr + ',' + self.OSVersion + ','
         
         # add in the information about the cards in each slot
         for key, value in self.cardInfoBySlot.items():
@@ -56,4 +60,5 @@ class BaseDevice:
             outstr = outstr + "No Card Info"
         
         print(outstr)
+        
         
